@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.diplomski.student.rideabike.MainActivity"
+    android:background="@color/background"
+
+    >
+
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/time"
+            android:textAlignment="center"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20sp"
+            android:text="@string/clock"
+            android:textSize="20sp"
+            />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:id="@+id/GoButton"
+            android:textSize="15sp"
+            android:width="200dp"
+            android:background="@drawable/my_button"
+            android:layout_alignTop="@+id/EndButton"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/EndButton"
+            android:layout_toStartOf="@+id/EndButton"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="1sp"
+            android:clickable="true"
+            android:onClick="mGoButtOnClick"
+            android:textAllCaps="false"
+            android:fontFamily="@string/font_family_black"
+            tools:targetApi="jelly_bean" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:id="@+id/saveButton"
+            android:background="@drawable/my_button"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:layout_alignTop="@+id/EndButton"
+            android:layout_toRightOf="@+id/EndButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/GoButton"
+            android:clickable="true"
+            android:layout_marginRight="1sp"
+            android:onClick="mSaveButtOnClick"
+            android:fontFamily="@string/font_family_black"
+            android:textAllCaps="false"
+            tools:ignore="RtlHardcoded"
+            tools:targetApi="jelly_bean" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/end"
+            android:id="@+id/EndButton"
+            android:textAlignment="center"
+            android:background="@drawable/my_button"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="2sp"
+            android:layout_marginRight="2sp"
+            android:clickable="true"
+            android:onClick="mEndButtOnClick"
+            android:fontFamily="@string/font_family_black"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            tools:targetApi="jelly_bean" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/date"
+            android:textSize="20sp"
+            android:id="@+id/textDate"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="20sp"
+            tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/speed"
+            android:id="@+id/textSpeed"
+            android:layout_below="@+id/time"
+            android:layout_alignLeft="@+id/textDate"
+            android:fontFamily="sans-serif-smallcaps"
+            tools:ignore="RtlHardcoded,SmallSp"
+            tools:targetApi="jelly_bean" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/Km"
+            android:id="@+id/textKm"
+            android:layout_centerVertical="true"
+            android:layout_below="@+id/speed"
+            android:layout_alignLeft="@+id/speed"
+            android:layout_alignStart="@+id/speed"
+            android:layout_marginTop="25sp"
+            android:fontFamily="sans-serif-smallcaps"
+            tools:ignore="SmallSp"
+            tools:targetApi="jelly_bean" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/textAverage"
+            android:id="@+id/textAverage"
+            android:textAlignment="center"
+            android:layout_alignTop="@+id/textSpeed"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30sp"
+            android:fontFamily="sans-serif-smallcaps"
+            tools:ignore="RtlHardcoded,SmallSp"
+            tools:targetApi="jelly_bean" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/averageSpeed"
+            android:textSize="25sp"
+            android:id="@+id/averagespeed"
+            android:layout_below="@+id/textAverage"
+            android:layout_alignLeft="@+id/textAverage"
+            tools:ignore="RtlHardcoded" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/time"
+            android:id="@+id/textTime"
+            android:textAlignment="center"
+            android:layout_alignTop="@+id/textKm"
+            android:layout_alignLeft="@+id/MaxSpeed"
+            android:layout_alignStart="@+id/MaxSpeed"
+            android:fontFamily="sans-serif-smallcaps"
+            tools:ignore="SmallSp"
+            tools:targetApi="jelly_bean" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/km"
+            android:textSize="25sp"
+            android:id="@+id/km"
+            android:layout_below="@+id/textKm"
+            android:layout_alignLeft="@+id/textKm"
+            android:layout_alignStart="@+id/textKm"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/Time"
+            android:textSize="25sp"
+            android:id="@+id/Time"
+            android:layout_below="@+id/textTime"
+            android:layout_alignLeft="@+id/textTime"
+            android:layout_alignStart="@+id/textTime"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/Textcalories"
+            android:id="@+id/textCalories"
+            android:layout_alignTop="@+id/textTime"
+            android:layout_alignLeft="@+id/textAverage"
+            android:fontFamily="sans-serif-smallcaps"
+            tools:ignore="RtlHardcoded,SmallSp"
+            tools:targetApi="jelly_bean" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/calories"
+            android:textSize="25sp"
+            android:id="@+id/calories"
+            android:layout_below="@+id/textCalories"
+            android:layout_alignLeft="@+id/textCalories"
+            tools:ignore="RtlHardcoded" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/TextMaxSpeed"
+            android:id="@+id/textMaxSpeed"
+            android:layout_alignTop="@+id/textSpeed"
+            android:layout_alignBottom="@+id/textSpeed"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-smallcaps"
+            tools:ignore="SmallSp"
+            tools:targetApi="jelly_bean" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/MaxSpeed"
+            android:textSize="25sp"
+            android:id="@+id/MaxSpeed"
+            android:layout_alignTop="@+id/speed"
+            android:layout_alignLeft="@+id/textMaxSpeed"
+            android:layout_alignStart="@+id/textMaxSpeed"
+            android:layout_below="@+id/textMaxSpeed"
+            />
+
+        <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mapView"
+            android:layout_below="@+id/Time"
+            android:layout_above="@+id/GoButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="5sp"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            tools:context=".MapsActivity"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/Speed"
+            android:textSize="25sp"
+            android:id="@+id/speed"
+            android:layout_below="@+id/textSpeed"
+            android:layout_alignLeft="@+id/textSpeed"
+            android:layout_alignStart="@+id/textSpeed" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/temp"
+            android:textSize="20sp"
+            android:id="@+id/textTemp"
+            tools:ignore="RtlHardcoded"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/textwind"
+            android:layout_alignStart="@+id/textwind" />
+
+        <TextView
+            android:text="0.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textwind"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText,RtlHardcoded,SmallSp"
+            android:layout_below="@+id/textTemp"
+            android:layout_alignLeft="@+id/textAverage"
+            android:layout_alignStart="@+id/textAverage"
+            />
+
+        <TextView
+            android:text="@string/km_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textwind"
+            android:layout_toEndOf="@+id/textwind"
+            android:layout_alignBottom="@+id/textwind"
+            android:layout_marginLeft="1sp"
+            android:id="@+id/kmhSpeedWind"
+            android:textSize="10sp"
+            tools:ignore="RtlHardcoded,SmallSp"
+            />
+
+
+
+        <TextView
+            android:text="@string/km_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/speed"
+            android:layout_toEndOf="@+id/speed"
+            android:layout_alignBottom="@+id/speed"
+            android:layout_marginLeft="1sp"
+            android:id="@+id/kmhSpeed"
+            android:textSize="10sp"
+            tools:ignore="RtlHardcoded,SmallSp" />
+
+        <TextView
+            android:text="@string/km_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/MaxSpeed"
+            android:layout_toEndOf="@+id/MaxSpeed"
+            android:layout_alignBottom="@+id/MaxSpeed"
+            android:layout_marginLeft="1sp"
+            android:id="@+id/kmhMSpeed"
+            android:textSize="10sp"
+            tools:ignore="RtlHardcoded,SmallSp"
+            />
+
+        <TextView
+            android:text="@string/km_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/averagespeed"
+            android:layout_toEndOf="@+id/averagespeed"
+            android:layout_alignBottom="@+id/averagespeed"
+            android:layout_marginLeft="1sp"
+            android:id="@+id/kmhASpeed"
+            android:textSize="10sp"
+            tools:ignore="RtlHardcoded,SmallSp"
+            />
+
+        <TextView
+            android:text="@string/Textkm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/km"
+            android:layout_toEndOf="@+id/km"
+            android:layout_alignBottom="@+id/km"
+            android:layout_marginLeft="1sp"
+            android:id="@+id/Textkm"
+            android:textSize="10sp"
+            tools:ignore="RtlHardcoded,SmallSp"
+            />
+        <TextView
+            android:text="@string/h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/Time"
+            android:layout_toEndOf="@+id/Time"
+            android:layout_alignBottom="@+id/Time"
+            android:layout_marginLeft="1sp"
+            android:id="@+id/Texth"
+            android:textSize="10sp"
+            tools:ignore="RtlHardcoded,SmallSp"
+            />
+        <TextView
+            android:text="kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/calories"
+            android:layout_toEndOf="@+id/calories"
+            android:layout_alignBottom="@+id/calories"
+            android:layout_marginLeft="1sp"
+            android:id="@+id/Textkcal"
+            android:textSize="10sp"
+            tools:ignore="HardcodedText,RtlHardcoded,SmallSp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ViewSatellite"
+            android:layout_below="@id/km"
+            android:background="@drawable/my_button_view"
+            android:text="@string/satellite"
+            android:layout_marginTop="12sp"
+            android:clickable="true"
+            android:textAllCaps="false"
+            android:onClick="mViewSatelliteButtOnClick"
+            android:fontFamily="@string/font_family_black"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_toLeftOf="@+id/ViewTerrain"
+            android:layout_toRightOf="@+id/textKm"
+            android:layout_marginRight="5sp"
+            android:layout_toEndOf="@+id/textKm" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ViewTerrain"
+            android:background="@drawable/my_button_view"
+            android:text="@string/terrain"
+            android:clickable="true"
+            android:textAllCaps="false"
+            android:onClick="mViewTerrainButtOnClick"
+            android:fontFamily="@string/font_family_black"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:layout_alignBaseline="@+id/ViewSatellite"
+            android:layout_alignBottom="@+id/ViewSatellite"
+            android:layout_toLeftOf="@+id/textTemp"
+            android:layout_toRightOf="@+id/MaxSpeed"
+            android:layout_marginLeft="5sp"
+            android:layout_toEndOf="@+id/MaxSpeed" />
+
+
+
+</RelativeLayout>
+
+
+

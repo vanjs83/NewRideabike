@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_start"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.diplomski.student.rideabike.StartActivity"
+    >
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:id="@+id/RideButton"
+        android:background= "@drawable/my_button"
+        android:layout_above="@+id/RouteButton"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
+        android:clickable="true"
+        android:onClick="mRideButtOnClick"
+        android:textColor="@color/font"
+        tools:ignore="RtlHardcoded" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/routes"
+        android:layout_alignLeft="@+id/RideButton"
+        android:layout_alignRight="@+id/RideButton"
+        android:layout_marginTop="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20sp"
+        android:id="@+id/RouteButton"
+        android:textColor="@color/font"
+        android:background= "@drawable/my_button"
+        android:clickable="true"
+        android:onClick="mRouteButtOnClick"
+        tools:ignore="RtlHardcoded" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/imageView"
+        android:scaleType="fitXY"
+        android:src="@mipmap/background_artic"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
