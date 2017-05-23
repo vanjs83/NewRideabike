@@ -333,7 +333,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                       //  double cph = calPerHPKM  *  currentRoute.speed;double
                         double cph = ((weight / 2)  *  currentRoute.speed) - 100;
                         currentRoute.totalCalories += ((cph / 60) / 60);
-                         mCalories.setText(String.format(Locale.ENGLISH, "%.2f", currentRoute.totalCalories));
+                        mCalories.setText(String.format(Locale.ENGLISH, "%.2f", currentRoute.totalCalories));
                     }
                 }
                 //Date time

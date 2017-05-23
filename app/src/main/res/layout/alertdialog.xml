@@ -9,7 +9,7 @@
         android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Age"
+        android:hint="@string/age"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
@@ -18,7 +18,7 @@
     <EditText
         android:id="@+id/weigth"
         android:inputType="number"
-        android:hint="Weight"
+        android:hint="@string/weight"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
