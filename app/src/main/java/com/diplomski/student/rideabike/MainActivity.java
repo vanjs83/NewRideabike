@@ -617,7 +617,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                        mMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()))
                                 .title("Stop"));
-                                visibeMarker = true;
+                                 visibeMarker = true; //if marker exist
                         //
                     }
                 }
