@@ -1,15 +1,16 @@
 package com.diplomski.student.rideabike;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 import java.io.IOException;
 import java.util.Locale;
+
+
 
 
 public class ListActivity extends MainActivity {
@@ -40,7 +41,6 @@ public class ListActivity extends MainActivity {
             for (int i = 0; i < routes.size(); i++) {
                 Route ruta = routes.get(i);
                 values[i] =  emptyString + ruta.nameRoute + "\n" + emptyString +ruta.date;
-
 
             }
                 //Array adapter

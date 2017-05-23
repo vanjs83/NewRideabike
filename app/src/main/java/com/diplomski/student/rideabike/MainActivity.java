@@ -3,7 +3,6 @@ package com.diplomski.student.rideabike;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Camera;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.location.LocationListener;
@@ -21,6 +20,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +37,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -63,11 +64,12 @@ import java.util.Locale;
 
 public class MainActivity extends FragmentActivity implements LocationListener, OnMapReadyCallback {
 
-
+    double weight=50;
+    int age =0;
     private static final int minTime = 1000; // Minimum time interval for update in seconds, i.e. 1 seconds.
     private static final int minDistance = 0; // Minimum distance change for update in meters, i.e. 1 meters.
-
-    double calPerHPKM = 25; //calores per h per km or 500cal per hour at speed 20kmh
+    EditText input, input1; //for
+   // double calPerHPKM = 30; //calores per h per km or 500cal per hour at speed 20kmh
     Button mGoButton,mSaveButton,mEndButton,mSetelliteButton, mTerrainButton;
     TextView mTime,mCalories , mDate, mClock, mSpeed, mMaxSpeed, mAvSpeed, mDistance, mTemp, mWind;
     TextView mTspeed, mMTspeed, mATspeed, mTdistance, mTduration, mTcalories;
@@ -85,11 +87,13 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     boolean started, mapReady=false;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     GoogleMap mMap;
+    Marker startMarker, endMarker;// marker object
     int temp = 0;
     double speedWind=0;
-   // int speedFactor = 0;
     int coordsIndex = 0;
     boolean simulatedGPS = false;
+    boolean getParametars= false;
+    boolean visibeMarker = false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -151,8 +155,11 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         //timer
         mHandler.removeCallbacks(startTimer);
         mHandler.postDelayed(startTimer, 0);
+        // editParametars();//for parameters no because editParametars will bi start on every activity
 
-        //GPS
+         // weight = getdouble();
+          //  showToast(String.format("%.2f",weight));
+
         //simulate
        // simulatedGPS = true;
 
@@ -189,6 +196,11 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
 
 
         }
+
+
+
+
+
                  //Ispitivanje Gps provider
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             //lOCATION UPDATES
@@ -201,7 +213,6 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(com.diplomski.student.rideabike.R.id.mapView);
                   mapFragment.getMapAsync(this);
-
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -216,6 +227,8 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+
 
     }
 
@@ -255,6 +268,59 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         // Add a thin red line from London to New York.
     }
 
+
+
+       //method for edit parameters
+
+    public void editParametars(){
+
+      //  LayoutInflater factory = LayoutInflater.from(this);
+       // final View textEntryView = factory.inflate(R.layout.alertdialog, null);
+
+        // variable for input age text
+        //input = (EditText) textEntryView.findViewById(R.id.age);
+        //variable for input weight text
+         // input1 = (EditText) textEntryView.findViewById(R.id.weigth);
+
+         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+         View content = LayoutInflater.from(this).inflate(R.layout.alertdialog, null);
+         builder.setView(content);
+        // variable for input age text
+         input = (EditText) content.findViewById(R.id.age);
+        //variable for input weight text
+         input1 = (EditText) content.findViewById(R.id.weigth);
+         builder.setIcon(R.mipmap.bike);
+         builder.setCancelable(true);
+         builder.setTitle("Enter yours parameters!");
+         builder.setMessage("Age and Weight!");
+         builder.setPositiveButton("Next",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which)  {
+                        //Edit person age and weight
+                        age = Integer.parseInt(input.getText().toString());
+                        weight = Double.parseDouble(input1.getText().toString());
+
+                    }
+                });
+         builder.setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        //   AlertDialog alertDialog =  builder.create();
+        //   alertDialog.show();
+           builder.show();
+
+   // setContentView(textEntryView);
+
+    }
+
+
+
+
+
     private Runnable startTimer = new Runnable() {
         public void run() {
             if(IndexRute == -1) {
@@ -263,10 +329,11 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                 {
                     updateTimer(elapsedTime);
                     //calc calories
-                    if(currentRoute.speed > 0) {
-                        double cph = calPerHPKM *  currentRoute.speed;
-                        currentRoute.totalCalories += (cph / 60) / 60;
-                        mCalories.setText(String.format(Locale.ENGLISH,"%.2f", currentRoute.totalCalories));
+                    if(currentRoute.speed > 0) { //check does have speed
+                      //  double cph = calPerHPKM  *  currentRoute.speed;double
+                        double cph = ((weight / 2)  *  currentRoute.speed) - 100;
+                        currentRoute.totalCalories += ((cph / 60) / 60);
+                         mCalories.setText(String.format(Locale.ENGLISH, "%.2f", currentRoute.totalCalories));
                     }
                 }
                 //Date time
@@ -274,13 +341,12 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                 SimpleDateFormat date = new SimpleDateFormat("dd.MM.yyyy",Locale.US);
                 mClock.setText(hhmmss.format(new Date()));
                 mDate.setText(date.format(new Date()));
-                mTemp.setText(String.format(Locale.ENGLISH,"%d\u00B0", temp));
+                mTemp.setText(String.format(Locale.ENGLISH, "%d\u00B0", temp));
                 mWind.setText(String.format(Locale.ENGLISH, "%.2f", speedWind));
                 if (currentRoute != null) {
                     currentRoute.temp = temp;
                     currentRoute.wind = speedWind;
                 }
-
 
                 mHandler.postDelayed(this, REFRESH_RATE);
             }
@@ -372,7 +438,8 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                         JSONObject condition = item.getJSONObject("condition");
                         JSONObject wind = channel.getJSONObject("wind");
                         temp = condition.getInt("temp");
-                        speedWind = wind.getInt("speed");
+                        //speedWind = wind.getInt("speed");
+                        speedWind=wind.getDouble("speed");
                     } catch (JSONException e) {
                         // Oops
                         e.printStackTrace();
@@ -477,11 +544,16 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
 
     }
 
-    public void mGoButtOnClick(View view) {
+    public  void mGoButtOnClick(View view) {
 
         //START button
         if (IndexRute == -1)
         {
+
+            if(!getParametars) { //insert parametars
+                editParametars();//for parameters
+                getParametars = true;
+            }
             showToast("Go!");
             currentRoute = new Route();
             clearPoints();
@@ -496,6 +568,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
             currentRoute.startTime = System.currentTimeMillis();
             startTime = System.currentTimeMillis();
             started = true;
+            visibeMarker = false;
 
         }
         //send button
@@ -531,7 +604,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
 
 
         if (IndexRute == -1) {
-              showToast("Finish!");
+
             started = false;
             if (currentRoute != null) {
                 //And marker
@@ -539,10 +612,14 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                 currentRoute.clock = mClock.getText().toString();
                 if (currentLocation != null) {
                     //Stop marker
-                    mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()))
-                            .title("Stop"));
-                    //
+                   if(!visibeMarker) {
+                       showToast("Finish!");
+                       mMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()))
+                                .title("Stop"));
+                                visibeMarker = true;
+                        //
+                    }
                 }
 
                 //Set speed at zero
@@ -632,6 +709,8 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     }
 
 
+
+
     public void  mViewTerrainButtOnClick(View view) {
 
         if(mapReady)
@@ -647,8 +726,10 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         {
             Polyline line = points.get(i);
             line.remove();
+
         }
-        points.clear();
+        points.clear();//remove polyline
+        mMap.clear();// remove marker
 
     }
 
@@ -707,8 +788,6 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     }
 
 
-
-
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
@@ -723,7 +802,6 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
 
     @Override
     public  void onLocationChanged(Location location) {
-
 
         // Weather update
         if (currentLocation == null) {
@@ -787,7 +865,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                 //  mMap.animateCamera(CameraUpdateFactory.newLatLngZoom());
                 //Start marker
 
-                        mMap.addMarker(new MarkerOptions()
+                          mMap.addMarker(new MarkerOptions()
                           .position(new LatLng(location.getLatitude(),location.getLongitude()))
                             .title("Start")).showInfoWindow();
 
