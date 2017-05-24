@@ -67,6 +67,7 @@ public class ListActivity extends MainActivity {
 
         }
     }
+              // Animacija
 
 
 
@@ -79,6 +80,7 @@ public class ListActivity extends MainActivity {
         b.putInt("RoutePos", Position);
         intent.putExtras(b); //Put your id to your next Intent
         startActivity(intent);
+        overridePendingTransition(R.animator.slide_in_right, R.animator.slide_out_left);//animation
     }
 
 

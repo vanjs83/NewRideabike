@@ -64,7 +64,7 @@ import java.util.Locale;
 
 public class MainActivity extends FragmentActivity implements LocationListener, OnMapReadyCallback {
 
-    double weight=50;
+    double weight=0;
     int age =0;
     private static final int minTime = 1000; // Minimum time interval for update in seconds, i.e. 1 seconds.
     private static final int minDistance = 0; // Minimum distance change for update in meters, i.e. 1 meters.
@@ -155,10 +155,10 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         //timer
         mHandler.removeCallbacks(startTimer);
         mHandler.postDelayed(startTimer, 0);
-        // editParametars();//for parameters no because editParametars will bi start on every activity
 
-         // weight = getdouble();
-          //  showToast(String.format("%.2f",weight));
+
+
+
 
         //simulate
        // simulatedGPS = true;
@@ -298,8 +298,13 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                     @Override
                     public void onClick(DialogInterface dialog, int which)  {
                         //Edit person age and weight
-                        age = Integer.parseInt(input.getText().toString());
-                        weight = Double.parseDouble(input1.getText().toString());
+                        try {
+                            age = Integer.parseInt(input.getText().toString());
+                            weight = Double.parseDouble(input1.getText().toString());
+                        }
+                        catch (NullPointerException e){
+                            e.printStackTrace();
+                        }
 
                     }
                 });
@@ -370,6 +375,13 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                 .setActionStatus(Action.STATUS_TYPE_COMPLETED)
                 .build();
     }
+
+
+     @Override // animacija
+     public void onBackPressed() {
+        super.onBackPressed();                     //enter
+        this.overridePendingTransition(R.animator.slide_in_left, R.animator.slide_out_right);
+       }
 
 
     @Override
@@ -936,6 +948,9 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         mMap.animateCamera(zoom);
         //
     }
+
+
+
 
 
 
