@@ -29,7 +29,9 @@
     <string name="satellite">Satellite</string>
     <string name="hybrid">Hybrid</string>
     <string name="terrain">Terrain</string>
-    <string name="age">Age(god)</string>
-    <string name="weight">Weight(kg)</string>
+    <string name="age">Age (god)</string>
+    <string name="weight">Weight (kg)</string>
+    <string name="man">Man</string>
+    <string name="woman">Woman</string>
 
 </resources>

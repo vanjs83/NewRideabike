@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,6 +71,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     private static final int minDistance = 0; // Minimum distance change for update in meters, i.e. 1 meters.
     EditText input, input1; //for
    // double calPerHPKM = 30; //calores per h per km or 500cal per hour at speed 20kmh
+    CheckBox cMan, cWoman;
     Button mGoButton,mSaveButton,mEndButton,mSetelliteButton, mTerrainButton;
     TextView mTime,mCalories , mDate, mClock, mSpeed, mMaxSpeed, mAvSpeed, mDistance, mTemp, mWind;
     TextView mTspeed, mMTspeed, mATspeed, mTdistance, mTduration, mTcalories;
@@ -94,6 +96,8 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     boolean simulatedGPS = false;
     boolean getParametars= false;
     boolean visibeMarker = false;
+    boolean isManCheck=false;
+    boolean isWomenCheck=false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -113,6 +117,8 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         //Button Terrain and Satellite
         mSetelliteButton = (Button) findViewById(R.id.ViewSatellite);
         mTerrainButton = (Button)findViewById(R.id.ViewTerrain);
+
+        //Check box
 
 
         mATspeed=(TextView)findViewById(com.diplomski.student.rideabike.R.id.textAverage);
@@ -289,11 +295,16 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
          input = (EditText) content.findViewById(R.id.age);
         //variable for input weight text
          input1 = (EditText) content.findViewById(R.id.weigth);
+
+
          builder.setIcon(R.mipmap.bike);
          builder.setCancelable(true);
          builder.setTitle("Enter yours parameters!");
          builder.setMessage("Age and Weight!");
-         builder.setPositiveButton("Next",
+
+
+
+        builder.setPositiveButton("Next",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which)  {
@@ -301,6 +312,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                         try {
                             age = Integer.parseInt(input.getText().toString());
                             weight = Double.parseDouble(input1.getText().toString());
+
                         }
                         catch (NullPointerException e){
                             e.printStackTrace();
@@ -387,6 +399,7 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     @Override
     public void onStart() {
         super.onStart();
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -561,11 +574,10 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         //START button
         if (IndexRute == -1)
         {
-
-            if(!getParametars) { //insert parametars
+                if(!getParametars) { //insert parametars
                 editParametars();//for parameters
                 getParametars = true;
-            }
+                }
             showToast("Go!");
             currentRoute = new Route();
             clearPoints();
@@ -803,9 +815,11 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     @Override
     public void onResume() {
         super.onResume();  // Always call the superclass method first
+        //Edit parametars layout
         if (currentLocation != null) {
             try {
                 getWeather(currentLocation);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

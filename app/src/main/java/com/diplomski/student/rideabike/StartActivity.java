@@ -17,9 +17,6 @@ public class StartActivity extends Activity {//stavio Activity
     private GestureDetector gestureDetector;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +26,6 @@ public class StartActivity extends Activity {//stavio Activity
         gestureDetector = new GestureDetector(new SwipeGestureDetector());
 
     }
-
 
     //Start swap
     @Override
