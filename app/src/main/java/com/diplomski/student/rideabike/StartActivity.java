@@ -100,7 +100,7 @@ public class StartActivity extends Activity {//stavio Activity
                     .setContentText(message)
                     .setContentInfo("INFO");
 
-                Intent notificationIntent = new Intent(this, MainActivity.class);
+                Intent notificationIntent = new Intent(this, StartActivity.class);
                 PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
                 b.setContentIntent(contentIntent);

@@ -38,7 +38,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -89,15 +88,13 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     boolean started, mapReady=false;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     GoogleMap mMap;
-    Marker startMarker, endMarker;// marker object
     int temp = 0;
     double speedWind=0;
     int coordsIndex = 0;
     boolean simulatedGPS = false;
     boolean getParametars= false;
     boolean visibeMarker = false;
-    boolean isManCheck=false;
-    boolean isWomenCheck=false;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -161,8 +158,6 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         //timer
         mHandler.removeCallbacks(startTimer);
         mHandler.postDelayed(startTimer, 0);
-
-
 
 
 
@@ -360,6 +355,8 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                 mDate.setText(date.format(new Date()));
                 mTemp.setText(String.format(Locale.ENGLISH, "%d\u00B0", temp));
                 mWind.setText(String.format(Locale.ENGLISH, "%.2f", speedWind));
+
+
                 if (currentRoute != null) {
                     currentRoute.temp = temp;
                     currentRoute.wind = speedWind;
@@ -463,7 +460,6 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
                         JSONObject condition = item.getJSONObject("condition");
                         JSONObject wind = channel.getJSONObject("wind");
                         temp = condition.getInt("temp");
-                        //speedWind = wind.getInt("speed");
                         speedWind=wind.getDouble("speed");
                     } catch (JSONException e) {
                         // Oops
@@ -481,8 +477,9 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
     }
 
 
+
     public void getWeather(Location location) throws IOException {
-// To call the async task do it like this
+       // To call the async task do it like this
         Location[] myTaskParams = {location};
         weatherTask task = (weatherTask) new weatherTask().execute(myTaskParams);
     }
@@ -819,7 +816,6 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         if (currentLocation != null) {
             try {
                 getWeather(currentLocation);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -962,6 +958,12 @@ public class MainActivity extends FragmentActivity implements LocationListener, 
         mMap.animateCamera(zoom);
         //
     }
+
+
+
+
+
+
 
 
 

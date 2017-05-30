@@ -1,22 +1,170 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_weather"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.diplomski.student.rideabike.WeatherActivity">
+    android:background="@mipmap/question"
+    tools:context="com.diplomski.student.rideabike.WeatherActivity"
+    >
 
 
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/imageView"
-        android:scaleType="fitXY"
-        android:src="@mipmap/question"
+    <TextView
+        android:id="@+id/town"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="city"
+        android:textColor="@color/blue"
+        android:textSize="25sp"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temp"
+        android:textColor="@color/blue"
+        android:textSize="45sp"
+        android:layout_below="@+id/town"
+        android:layout_centerHorizontal="true"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Text"
+        android:textColor="@color/blue"
+        android:textSize="15sp"
+        android:layout_marginRight="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_alignTop="@+id/temp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="14dp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/town"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:ignore="ContentDescription" />
+        android:textColor="@color/blue"
+        android:textSize="25sp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
+        android:text="country"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="13sp"
+        android:text="date"
+        tools:ignore="HardcodedText,SmallSp"
+        android:layout_alignBaseline="@+id/town"
+        android:layout_alignBottom="@+id/town"
+        android:layout_alignLeft="@+id/text"
+        android:layout_alignStart="@+id/text" />
+
+    <TextView
+        android:id="@+id/textWind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temp"
+        android:textColor="@color/blue"
+        android:textSize="25sp"
+        android:layout_marginTop="14dp"
+        android:text="Wind"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/chill"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chill"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:layout_below="@+id/textWind"
+        android:layout_alignLeft="@+id/country"
+        android:layout_alignStart="@+id/country" />
+
+    <TextView
+        android:id="@+id/directions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Directions"
+        android:layout_below="@+id/textWind"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/blue"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:text="Speed"
+        android:layout_below="@+id/textWind"
+        android:layout_alignRight="@+id/text"
+        android:layout_alignEnd="@+id/text" />
+
+    <TextView
+        android:id="@+id/atmosphere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/directions"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:text="Atmosphere" />
+
+    <TextView
+        android:id="@+id/chilldeg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:layout_below="@+id/chill"
+        android:layout_alignLeft="@+id/chill"
+        android:layout_alignStart="@+id/chill" />
+
+    <TextView
+        android:id="@+id/directionsdeg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/directions"
+        android:layout_alignStart="@+id/directions"
+        android:layout_below="@+id/directions"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text="00" />
+
+    <TextView
+        android:id="@+id/speedkmh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/speed"
+        android:layout_alignStart="@+id/speed"
+        android:layout_below="@+id/speed"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        />
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

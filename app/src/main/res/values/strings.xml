@@ -33,5 +33,6 @@
     <string name="weight">Weight (kg)</string>
     <string name="man">Man</string>
     <string name="woman">Woman</string>
+    <string name="town">Town</string>
 
 </resources>
