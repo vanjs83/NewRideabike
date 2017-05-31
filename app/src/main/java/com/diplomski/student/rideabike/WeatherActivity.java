@@ -37,9 +37,9 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
 
     //Creates variable
     private GestureDetector gestureDetector;
-    int temperature = 0, Windchill, Winddirections;
+    int temperature = 0, Windchill=0, Winddirections=0;
     double Windspeed =0;
-    String city = "city", country = "country", text="text", date="dste";
+    String city = "city", country = "country", text="text", date="distance";
     Location currentlocation;
     LocationManager locationManager;
     TextView Wtemp, Wcity, Wcountry, Wtext, Wdate, Wwspeed, Wwchill, Wwdirection;
