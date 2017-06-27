@@ -125,12 +125,12 @@
         android:id="@+id/atmosphere"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/directions"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
         android:textColor="@color/blue"
         android:textSize="20sp"
-        android:text="Atmosphere" />
+        android:text="Atmosphere"
+        android:layout_below="@+id/directionsdeg"
+        android:layout_alignRight="@+id/temp"
+        android:layout_alignEnd="@+id/temp" />
 
     <TextView
         android:id="@+id/chilldeg"
@@ -165,6 +165,157 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         />
+
+    <TextView
+        android:id="@+id/texthumidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humidity"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:layout_below="@+id/atmosphere"
+        android:layout_toRightOf="@+id/town"
+        android:layout_toEndOf="@+id/town"
+        android:layout_marginRight="15sp"/>
+
+    <TextView
+        android:id="@+id/textpressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pressure"
+        android:layout_alignBaseline="@+id/texthumidity"
+        android:layout_alignBottom="@+id/texthumidity"
+        android:layout_alignLeft="@+id/chilldeg"
+        android:layout_alignStart="@+id/chilldeg"
+        android:textColor="@color/blue"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textrising"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rising"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/texthumidity"
+        android:layout_alignBottom="@+id/texthumidity"
+        android:layout_alignLeft="@+id/atmosphere"
+        android:layout_alignStart="@+id/atmosphere"
+        android:layout_marginLeft="10sp"/>
+
+    <TextView
+        android:id="@+id/textvisibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visibility"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:layout_alignBaseline="@+id/texthumidity"
+        android:layout_alignBottom="@+id/texthumidity"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@+id/textpressure"
+        android:layout_alignLeft="@+id/textpressure"
+        android:layout_alignStart="@+id/textpressure" />
+
+    <TextView
+        android:id="@+id/rising"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@+id/textrising"
+        android:layout_alignLeft="@+id/textrising"
+        android:layout_alignStart="@+id/textrising"
+        android:text="00"/>
+
+    <TextView
+        android:id="@+id/humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@+id/texthumidity"
+        android:layout_alignLeft="@+id/texthumidity"
+        android:layout_alignStart="@+id/texthumidity" />
+
+    <TextView
+        android:id="@+id/visibility"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@+id/textvisibility"
+        android:layout_alignLeft="@+id/textvisibility"
+        android:layout_alignStart="@+id/textvisibility" />
+
+    <TextView
+        android:id="@+id/textAstronomy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Astronomy"
+        android:textColor="@color/blue"
+        android:textSize="20sp"
+        android:layout_below="@+id/rising"
+        android:layout_alignRight="@+id/directions"
+        android:layout_alignEnd="@+id/directions"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/textSunrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/pressure"
+        android:layout_alignStart="@+id/pressure"
+        android:layout_below="@+id/textAstronomy"
+        android:text="Sunrise"
+        android:textColor="@color/blue"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textSunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textAstronomy"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:text="Sunset"
+        android:textColor="@color/blue"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Sunrise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textSunrise"
+        android:layout_alignStart="@+id/textSunrise"
+        android:layout_below="@+id/textSunrise"
+        android:text="0:00"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/Sunset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textSunset"
+        android:layout_alignStart="@+id/textSunset"
+        android:layout_below="@+id/textSunset"
+        android:text="0:00"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
 
 
 </RelativeLayout>

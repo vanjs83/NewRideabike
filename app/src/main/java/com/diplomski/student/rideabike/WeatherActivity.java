@@ -37,12 +37,12 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
 
     //Creates variable
     private GestureDetector gestureDetector;
-    int temperature = 0, Windchill=0, Winddirections=0;
-    double Windspeed =0;
-    String city = "city", country = "country", text="text", date="distance";
+    int temperature = 0, Windchill=0, Winddirections=0, humidity, rising , visibility;
+    double Windspeed =0, pressure;
+    String city = "city", country = "country", text="text", date="distance", Stringrising, Sunrise ,Sunset;
     Location currentlocation;
     LocationManager locationManager;
-    TextView Wtemp, Wcity, Wcountry, Wtext, Wdate, Wwspeed, Wwchill, Wwdirection;
+    TextView Wtemp, Wcity, Wcountry, Wtext, Wdate, Wwspeed, Wwchill, Wwdirection, Whumidity, Wpressure, Wrising, Wvisibility, Wsunrise, Wsunset;
 
     // Creates variable for view
 
@@ -61,6 +61,12 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
            Wwspeed = (TextView) findViewById(R.id.speedkmh);
            Wwchill = (TextView) findViewById(R.id.chilldeg);
            Wwdirection= (TextView) findViewById(R.id.directionsdeg);
+           Whumidity = (TextView) findViewById(R.id.humidity);
+           Wpressure = (TextView) findViewById(R.id.pressure);
+           Wrising = (TextView) findViewById(R.id.rising);
+           Wvisibility = (TextView) findViewById(R.id.visibility);
+           Wsunrise = (TextView) findViewById(R.id.Sunrise);
+           Wsunset = (TextView) findViewById(R.id.Sunset);
 
 
 
@@ -134,14 +140,22 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
                         JSONObject condition = item.getJSONObject("condition");
                         JSONObject locations = channel.getJSONObject("location");
                         JSONObject wind = channel.getJSONObject("wind");
+                        JSONObject atmosphere = channel.getJSONObject("atmosphere");
+                        JSONObject astronomy= channel.getJSONObject("astronomy");
                         temperature = condition.getInt("temp");
                         text = condition.getString("text");
-                        date = condition.getString("date").substring(0,16);
+                        date = condition.getString("date").substring(4,16);
                         city = locations.getString("city");
                         country = locations.getString("country");
                          Windspeed = wind.getDouble("speed");
                          Windchill = wind.getInt("chill");
                          Winddirections = wind.getInt("direction");
+                          humidity = atmosphere.getInt("humidity");
+                          rising = atmosphere.getInt("rising");
+                          pressure = atmosphere.getDouble("pressure");
+                          visibility = atmosphere.getInt("visibility");
+                          Sunrise = astronomy.getString("sunrise");
+                          Sunset = astronomy.getString("sunset");
 
 
                        // speedWind=wind.getDouble("speed");
@@ -246,6 +260,18 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
             }
         }
 
+        switch (rising){
+            case 0:
+                Stringrising = "steady";
+                break;
+            case 1:
+                Stringrising = "rising";
+                break;
+            case 2:
+                Stringrising = "falling";
+                break;
+        }
+
          Wtemp.setText(String.format(Locale.ENGLISH,"%d\u00B0", temperature));
          Wcity.setText(String.format(Locale.ENGLISH, "%s", city));
          Wtext.setText(String.format(Locale.ENGLISH, "%s",text));
@@ -254,7 +280,13 @@ public class WeatherActivity extends AppCompatActivity implements LocationListen
           Wwchill.setText(String.format(Locale.ENGLISH, "%d\u00B0", Windchill));
           Wwdirection.setText(String.format(Locale.ENGLISH, "%d\u00B0", Winddirections));
           Wwspeed.setText(String.format(Locale.ENGLISH, "%.2f", Windspeed));
-            currentlocation = location;
+           Whumidity.setText(String.format(Locale.ENGLISH, "%d%%", humidity));
+           Wrising.setText(String.format(Locale.ENGLISH, "%s", Stringrising));
+           Wpressure.setText(String.format(Locale.ENGLISH, "%.2f\u006d\u0062", pressure));
+           Wvisibility.setText(String.format(Locale.ENGLISH, "%d\u006b\u006d", visibility));
+            Wsunrise.setText(String.format(Locale.ENGLISH, "%s", Sunrise));
+            Wsunset.setText(String.format(Locale.ENGLISH, "%s", Sunset));
+              currentlocation = location;
     }
 
 
